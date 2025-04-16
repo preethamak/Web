@@ -14,7 +14,7 @@
 
 1. Clone the repository:
 ```bash
-git clone [uel]
+git clone [url]
 ```
 
 ## Project Structure
