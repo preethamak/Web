@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equdator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-text {
+      transition: opacity 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-[#2E2E2E] text-[#D1D0CB] min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-8 py-4 bg-[#6E6353]">
+    <h1 class="text-xl font-bold text-[#D1D0CB]">Equdator</h1>
+    <div class="flex gap-6 items-center">
+      <a href="#" class="text-[#D1D0CB] hover:underline">Option 1</a>
+      <a href="#" class="text-[#D1D0CB] hover:underline">Option 2</a>
+      <a href="signup.html" class="bg-[#4f46e5] hover:bg-[#4338ca] text-white px-4 py-2 rounded-lg font-medium transition-all hover:-translate-y-0.5">Sign Up</a>
+      <button id="themeToggle" class="p-2 rounded-lg hover:bg-black/10 transition-colors">
+        <i class="fas fa-moon text-[#D1D0CB] text-xl"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content with extra height for scroll -->
+  <div class="flex flex-col items-center justify-start min-h-[300vh] px-4 text-center pt-32">
+    <div class="sticky top-32 flex flex-row items-center justify-between w-full max-w-6xl gap-32">
+
+      <!-- Old Man -->
+      <div class="text-left max-w-sm flex flex-col items-center">
+        <img src="olddddddd.png" alt="Old Man" class="w-36 h-36 rounded-full" />
+        <h2 class="text-2xl font-semibold text-[#A2A092]">Old Man</h2>
+        <p id="old-man-dialog" class="mt-2 text-[#D1D0CB] fade-text"></p>
+      </div>
+
+      <!-- Boy -->
+      <div class="text-right max-w-sm flex flex-col items-center">
+        <img src="boyyyyyyy.png" alt="Boy" class="w-36 h-36 rounded-full" />
+        <h2 class="text-2xl font-semibold text-[#8A887E]">Boy</h2>
+        <p id="boy-dialog" class="mt-2 text-[#D1D0CB] fade-text"></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeIcon.className = 'fas fa-sun text-[#D1D0CB] text-xl';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      themeIcon.className = isDark 
+        ? 'fas fa-moon text-[#D1D0CB] text-xl'
+        : 'fas fa-sun text-[#D1D0CB] text-xl';
+    });
+  </script>
+</body>
+</html>
