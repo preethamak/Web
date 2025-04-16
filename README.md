@@ -1,4 +1,4 @@
-# Equdator
+# EQUDATOR
 
 ## Technologies Used
 
@@ -14,12 +14,7 @@
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
-```
-
-2. Navigate to the project directory:
-```bash
-cd Equdator
+git clone [URL]
 ```
 
 ## Project Structure
@@ -29,5 +24,6 @@ Equdator/
 ├── index.html          # Main landing page
 ├── signup.html         # Authentication page
 ├── scripts.js          # Main JavaScript functionality
-└── README.md           # Project documentation
+└── README.md          # Project documentation
 ```
+
