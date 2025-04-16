@@ -14,7 +14,7 @@
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone 
 ```
 
 2. Navigate to the project directory:
