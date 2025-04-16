@@ -14,12 +14,7 @@
 
 1. Clone the repository:
 ```bash
-git clone 
-```
-
-2. Navigate to the project directory:
-```bash
-cd Equdator
+git clone [uel]
 ```
 
 ## Project Structure
