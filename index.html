@@ -6,68 +6,354 @@
   <title>Equdator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    body {
+      /* Muted deep blue gradient background */
+      background: linear-gradient(135deg, #1a2a36 0%, #25405a 100%);
+    }
     .fade-text {
       transition: opacity 0.3s ease-in-out;
     }
+    .img-gradient-border {
+      position: relative;
+      z-index: 1;
+    }
+    .img-gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      z-index: -1;
+      border-radius: 1.2rem;
+      background: linear-gradient(120deg, #4b8ca7 0%, #e6dbc7 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .img-gradient-border:hover::before {
+      opacity: 1;
+    }
+    .zoom-img {
+      transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.4s cubic-bezier(.4,2,.6,1), border-color 0.4s cubic-bezier(.4,2,.6,1);
+    }
+    .zoom-img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 24px 0 #4b8ca7, 0 0 0 4px #e6dbc7;
+      border-color: #4b8ca7;
+    }
+    .dialogue-animate {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: dialogueIn 0.7s cubic-bezier(.4,2,.6,1) forwards;
+    }
+    @keyframes dialogueIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .bubble-tail-left::after {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 16px 24px 16px 0;
+      border-style: solid;
+      border-color: transparent #e6dbc7 transparent transparent;
+    }
+    .bubble-tail-right::after {
+      content: '';
+      position: absolute;
+      right: -24px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 16px 0 16px 24px;
+      border-style: solid;
+      border-color: transparent transparent transparent #e6dbc7;
+    }
+    .bubble-left {
+      align-self: flex-start;
+      margin-left: 0;
+      margin-right: auto;
+    }
+    .bubble-right {
+      align-self: flex-end;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .glow-bubble {
+      background: linear-gradient(120deg, rgba(44,62,80,0.85) 60%, rgba(75,140,167,0.7) 100%);
+      box-shadow: 0 4px 24px 0 #4b8ca7, 0 0 0 4px #4b8ca7;
+      transition: box-shadow 0.4s cubic-bezier(.4,2,.6,1), transform 0.3s cubic-bezier(.4,2,.6,1), border 0.3s cubic-bezier(.4,2,.6,1), background 0.4s;
+    }
+    .glow-bubble:hover {
+      box-shadow: 0 8px 32px 0 #4b8ca7, 0 0 0 8px #b6c9d6;
+      transform: scale(1.04) rotate(-1deg);
+      border: 2px solid #b6c9d6;
+      background: linear-gradient(120deg, rgba(75,140,167,0.9) 30%, rgba(44,62,80,0.95) 100%);
+    }
+    .glass-card, .why-glass-card {
+      background: rgba(44, 62, 80, 0.55);
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 2.5rem 2rem;
+      margin: 2rem 0;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .navbar-gradient, .footer-gradient {
+      background: rgba(44, 62, 80, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 16px 0 rgba(44, 62, 80, 0.15);
+      border-bottom: 1px solid rgba(75,140,167,0.18);
+    }
+    .footer-gradient {
+      border-top: 1px solid rgba(75,140,167,0.18);
+      border-bottom: none;
+    }
+    .nav-link {
+      color: #fff;
+      font-weight: 600;
+      border-radius: 9999px;
+      padding: 0.4rem 1.2rem;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: linear-gradient(90deg, #4b8ca7 0%, #25405a 100%);
+      color: #FFD166;
+      box-shadow: 0 2px 12px 0 #4b8ca7;
+    }
+    .signup-btn {
+      background: linear-gradient(90deg, #4b8ca7 0%, #25405a 100%);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 9999px;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 8px 0 #4b8ca7;
+      padding: 0.6rem 2rem;
+      letter-spacing: 0.04em;
+    }
+    .signup-btn:hover {
+      background: linear-gradient(90deg, #25405a 0%, #4b8ca7 100%);
+      color: #FFD166;
+      transform: scale(1.09);
+      box-shadow: 0 4px 16px 0 #4b8ca7;
+    }
+    .dialogue-text {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(26,42,54,0.18), 0 1px 0 #25405a;
+      background: transparent;
+      letter-spacing: 0.01em;
+    }
+    .why-glass-card h2, .why-glass-card h3 {
+      color: #FFD166 !important;
+      text-shadow: 0 2px 8px rgba(44,62,80,0.18);
+    }
+    .why-glass-card p {
+      color: #e6dbc7 !important;
+    }
+    @media (max-width: 600px) {
+      .bubble-left, .bubble-right {
+        max-width: 90vw;
+        min-width: 0;
+      }
+      .glass-card, .why-glass-card {
+        padding: 1.2rem 0.5rem;
+      }
+    }
   </style>
 </head>
-<body class="bg-[#2E2E2E] text-[#D1D0CB] min-h-screen">
+<body class="text-[#D1D0CB] min-h-screen flex flex-col justify-between">
 
   <!-- Navbar -->
-  <nav class="flex justify-between items-center px-8 py-4 bg-[#6E6353]">
-    <h1 class="text-xl font-bold text-[#D1D0CB]">Equdator</h1>
-    <div class="flex gap-6 items-center">
-      <a href="#" class="text-[#D1D0CB] hover:underline">Option 1</a>
-      <a href="#" class="text-[#D1D0CB] hover:underline">Option 2</a>
-      <a href="signup.html" class="bg-[#4f46e5] hover:bg-[#4338ca] text-white px-4 py-2 rounded-lg font-medium transition-all hover:-translate-y-0.5">Sign Up</a>
-      <button id="themeToggle" class="p-2 rounded-lg hover:bg-black/10 transition-colors">
-        <i class="fas fa-moon text-[#D1D0CB] text-xl"></i>
-      </button>
+  <nav class="fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 px-8 py-4 navbar-gradient z-50 shadow-lg">
+    <div class="flex-shrink-0 flex items-center gap-2 pl-10">
+      <span class="inline-block align-middle">
+        <!-- Simple robot SVG icon -->
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="7" width="18" height="12" rx="6" fill="#FFD166" stroke="#25405a" stroke-width="2"/>
+          <circle cx="8" cy="13" r="1.5" fill="#25405a"/>
+          <circle cx="16" cy="13" r="1.5" fill="#25405a"/>
+          <rect x="10.5" y="3" width="3" height="4" rx="1.5" fill="#FFD166" stroke="#25405a" stroke-width="2"/>
+        </svg>
+      </span>
+      <h1 class="text-2xl text-white font-bold align-middle">Equdator</h1>
+    </div>
+    <div class="flex-1 flex justify-center">
+      <div class="flex gap-6">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#products" class="nav-link">Products</a>
+      </div>
+    </div>
+    <div class="flex items-center space-x-8 pr-16">
+      <a href="signup.html" class="signup-btn">Get Started</a>
     </div>
   </nav>
 
-  <!-- Main Content with extra height for scroll -->
-  <div class="flex flex-col items-center justify-start min-h-[300vh] px-4 text-center pt-32">
-    <div class="sticky top-32 flex flex-row items-center justify-between w-full max-w-6xl gap-32">
-
-      <!-- Old Man -->
-      <div class="text-left max-w-sm flex flex-col items-center">
-        <img src="olddddddd.png" alt="Old Man" class="w-36 h-36 rounded-full" />
-        <h2 class="text-2xl font-semibold text-[#A2A092]">Old Man</h2>
-        <p id="old-man-dialog" class="mt-2 text-[#D1D0CB] fade-text"></p>
+  <!-- Hero Section with Conversation -->
+  <main class="flex-1 flex flex-col items-center justify-center pt-32 pb-16 px-4 min-h-screen">
+    <div class="glass-card">
+      <div class="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-4 md:gap-8">
+        <!-- Boy Image -->
+        <div class="text-center max-w-xs flex flex-col items-center justify-start img-gradient-border">
+          <img src="boy1.png" alt="Boy" class="rounded-2xl max-w-xs w-full aspect-[3/4] object-cover mb-4 zoom-img" />
+        </div>
+        <!-- Rotating Dialogue Message (bubble floats left or right) -->
+        <div id="dialogue-parent" class="relative flex flex-col justify-center flex-1 min-w-[250px] w-full items-center">
+          <div id="dialogue-box" class="dialogue-text font-extrabold rounded-2xl p-7 shadow-lg max-w-lg w-full mb-4 text-2xl relative dialogue-animate glow-bubble">
+          </div>
+        </div>
+        <!-- Grandpa Image -->
+        <div class="text-center max-w-xs flex flex-col items-center justify-start img-gradient-border">
+          <img src="grandpa.png" alt="Grandpa" class="rounded-2xl max-w-xs w-full aspect-[3/4] object-cover mb-4 zoom-img" />
+        </div>
       </div>
-
-      <!-- Boy -->
-      <div class="text-right max-w-sm flex flex-col items-center">
-        <img src="boyyyyyyy.png" alt="Boy" class="w-36 h-36 rounded-full" />
-        <h2 class="text-2xl font-semibold text-[#8A887E]">Boy</h2>
-        <p id="boy-dialog" class="mt-2 text-[#D1D0CB] fade-text"></p>
-      </div>
-
     </div>
-  </div>
 
-  <script src="scripts.js"></script>
+    <!-- Why choose Us Section -->
+    <section class="why-glass-card w-full max-w-6xl mx-auto mt-12 mb-8 px-2">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-center text-[#FFD166] mb-4">Why choose Us?</h2>
+      <p class="text-center text-lg text-[#e6dbc7] mb-10">Empower your investments with data-driven predictions and insights from our advanced AI platform.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="flex gap-5 items-start">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png" alt="Data" class="w-20 h-20">
+          <div>
+            <h3 class="text-2xl font-bold text-[#FFD166] mb-1">Data</h3>
+            <p class="text-[#e6dbc7] font-semibold">We are committed to the highest standards of data accuracy. We use completely automated scans and AI reviews of the data to ensure this.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 items-start">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721304.png" alt="Real-Time Data" class="w-20 h-20">
+          <div>
+            <h3 class="text-2xl font-bold text-[#FFD166] mb-1">Real-Time Data</h3>
+            <p class="text-[#e6dbc7] font-semibold">Stay informed with news analysis and stock patterns, driving smarter investment decisions based on metrics.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 items-start">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721302.png" alt="Data Accuracy" class="w-20 h-20">
+          <div>
+            <h3 class="text-2xl font-bold text-[#FFD166] mb-1">Data Accuracy</h3>
+            <p class="text-[#e6dbc7] font-semibold">Our aim is to give our users a super fast and accurate prediction and also to make everything load instantly.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 items-start">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721301.png" alt="Integrity" class="w-20 h-20">
+          <div>
+            <h3 class="text-2xl font-bold text-[#FFD166] mb-1">Integrity</h3>
+            <p class="text-[#e6dbc7] font-semibold">We don't promote individual stocks and present each data point following objective rules.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 items-start">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" alt="Historical Data" class="w-20 h-20">
+          <div>
+            <h3 class="text-2xl font-bold text-[#FFD166] mb-1">Historical Data</h3>
+            <p class="text-[#e6dbc7] font-semibold">All the historical data are completely analysed and trained to the best of the predictions. But we also aim to train continuously to improvise the model to the current market as well.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-gradient text-white text-extrabold text-center p-2 shadow-inner">
+    <p>&copy; 2025 Equdator. All rights reserved.</p>
+  </footer>
+
   <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      themeIcon.className = 'fas fa-sun text-[#D1D0CB] text-xl';
+    // Dialogues and speakers (removed welcome message)
+    const dialogues = [
+      {
+        text: "Beta , Hamare pados mein ek aadmi tha, badi gaadi chalata tha. Stock market mein ghusa aur ab auto chala raha hai.",
+        speaker: "Grand-father",
+        tail: "right"
+      },
+      {
+        text: "Ameer banne ke sapne dekhte dekhte log gareeb ban jaate hain stock market mein.",
+        speaker: "Grand-father",
+        tail: "right"
+      },
+      {
+        text: "Mujhe ek aadmi pata hai, apne bete ki shaadi ke liye paisa jama kiya tha, sab stock market mein laga diya aur sab barbaad ho gaya.",
+        speaker: "Grand-father",
+        tail: "right"
+      },
+      {
+        text: "Beta, tumhare tauji ke dost ka ladka MBA kiya tha, socha stock market se crore kama lega. Aaj colony ka cable ka connection repair karta hai.",
+        speaker: "Grand-father",
+        tail: "right"
+      },
+      {
+        text: "Hamare zamane mein FD aur PPF mein paisa lagta tha, aur log shanti se raat ko so lete the. Yeh stock market walon ki neend toh hamesha udhi rehti hai.",
+        speaker: "Grand-father",
+        tail: "right"
+      },
+      {
+        text: "Arre bhai, yeh share market toh ek loteri hai. Jitne paise tum kharche ho, utne paise toh meri patni bachat karke 15 saal mein kama leti hai!",
+        speaker: "Grand-father",
+        tail: "right"
+      },
+      {
+        text: "Apna myth-breaking journey shuru karo! Dada ji ki baatein mazedaar hain, lekin sahi knowledge ke bina stock market ek puzzle hi rahega.",
+        speaker: "Grand-child",
+        tail: "left"
+      }
+    ];
+    let dialogueIndex = 0;
+    const dialogueBox = document.getElementById('dialogue-box');
+    const dialogueParent = document.getElementById('dialogue-parent');
+    let intervalId;
+    function showDialogue() {
+      // Remove previous tail and float classes
+      dialogueBox.classList.remove('bubble-tail-left', 'bubble-tail-right', 'bubble-left', 'bubble-right', 'self-start', 'self-end', 'dialogue-animate', 'fade-out');
+      // Animate out (fade out)
+      dialogueBox.style.opacity = 1;
+      dialogueBox.classList.add('fade-out');
+      setTimeout(() => {
+        // Set dialogue
+        dialogueBox.innerHTML = dialogues[dialogueIndex].text;
+        // Add tail and float class if needed
+        if (dialogues[dialogueIndex].tail === 'left') {
+          dialogueBox.classList.add('bubble-tail-left', 'bubble-left', 'self-start');
+        } else if (dialogues[dialogueIndex].tail === 'right') {
+          dialogueBox.classList.add('bubble-tail-right', 'bubble-right', 'self-end');
+        }
+        // Animate in
+        setTimeout(() => {
+          dialogueBox.classList.remove('fade-out');
+          dialogueBox.classList.add('dialogue-animate');
+          dialogueBox.style.opacity = 1;
+        }, 10);
+      }, 400);
+      dialogueIndex = (dialogueIndex + 1) % dialogues.length;
     }
 
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
-      themeIcon.className = isDark 
-        ? 'fas fa-moon text-[#D1D0CB] text-xl'
-        : 'fas fa-sun text-[#D1D0CB] text-xl';
-    });
+    function startDialogueInterval() {
+      intervalId = setInterval(showDialogue, 5000);
+    }
+    function stopDialogueInterval() {
+      clearInterval(intervalId);
+    }
+
+    // Add fade-out animation
+    const style = document.createElement('style');
+    style.innerHTML = `.fade-out { opacity: 0 !important; transition: opacity 0.5s cubic-bezier(.4,2,.6,1); }`;
+    document.head.appendChild(style);
+
+    // Pause on hover, resume on mouse leave
+    dialogueBox.addEventListener('mouseenter', stopDialogueInterval);
+    dialogueBox.addEventListener('mouseleave', startDialogueInterval);
+
+    startDialogueInterval();
+    // Show the first dialogue immediately
+    showDialogue();
   </script>
+
 </body>
 </html>
