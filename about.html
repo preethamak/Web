@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About EQUADATOR - AI-Powered Investment Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <style>
+    :root {
+      --primary: #7b2ff2;
+      --secondary: #00eaff;
+      --dark: #0f172a;
+      --light: #f8fafc;
+    }
+    
+    html { 
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body.light {
+      background: linear-gradient(120deg, #e0e7ef 0%, #f8fafc 60%, #dbeafe 100%);
+      color: #334155;
+    }
+
+    body.dark {
+      background: linear-gradient(120deg, #0f172a 0%, #1e293b 60%, #0a192f 100%);
+      color: #e0e7ef;
+    }
+
+    .brand-gradient {
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark .glass-effect {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+      color: inherit;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark .feature-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(123, 47, 242, 0.15);
+    }
+  </style>
+</head>
+<body class="light">
+  <!-- Navbar -->
+  <nav class="w-full flex items-center justify-between px-8 py-4 glass-effect sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+      <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="floating">
+        <circle cx="24" cy="24" r="22" fill="#fff" stroke="#00eaff" stroke-width="3"/>
+        <path d="M24 12L32 36H16L24 12Z" fill="#7b2ff2" stroke="#00eaff" stroke-width="2"/>
+        <circle cx="24" cy="24" r="5" fill="#00eaff"/>
+      </svg>
+      <span class="text-2xl font-extrabold brand-gradient tracking-wide">EQUADATOR</span>
+    </div>
+    <div class="flex gap-8 items-center">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+    </div>
+  </nav>
+
+  <!-- About Hero Section -->
+  <section class="min-h-[60vh] flex items-center justify-center px-4 py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 opacity-50"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="fade-up">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+        <span class="brand-gradient">Revolutionizing</span><br>
+        Investment with AI
+      </h1>
+      <p class="text-xl text-slate-600 dark:text-slate-300 mb-8">
+        EQUADATOR is where cutting-edge artificial intelligence meets the world of finance, creating a new paradigm for modern investing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <h2 class="text-4xl font-bold mb-6">Our Mission</h2>
+          <p class="text-lg text-slate-600 dark:text-slate-300 mb-6">
+            At EQUADATOR, we're on a mission to democratize sophisticated investment strategies through the power of artificial intelligence. We believe that advanced investment tools and insights should be accessible to everyone, not just institutional investors.
+          </p>
+          <p class="text-lg text-slate-600 dark:text-slate-300">
+            Our platform combines state-of-the-art machine learning algorithms with comprehensive market data to provide you with intelligent, data-driven investment recommendations across a wide range of financial instruments.
+          </p>
+        </div>
+        <div class="relative" data-aos="fade-left">
+          <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="AI Investment Platform" 
+                 class="object-cover w-full h-full">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 px-4 bg-white dark:bg-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+        Comprehensive Investment Solutions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-16 h-16 rounded-2xl bg-blue-100 dark:bg-blue-900 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Stocks & Derivatives</h3>
+          <p class="text-slate-600 dark:text-slate-300">AI-powered analysis for stocks, options, and futures trading with real-time market insights and predictive analytics.</p>
+        </div>
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 rounded-2xl bg-purple-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Mutual Funds & ETFs</h3>
+          <p class="text-slate-600 dark:text-slate-300">Smart portfolio optimization and fund selection using advanced machine learning algorithms.</p>
+        </div>
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 rounded-2xl bg-green-100 dark:bg-green-900 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Bonds & Fixed Income</h3>
+          <p class="text-slate-600 dark:text-slate-300">Intelligent bond analysis and fixed income portfolio management with risk assessment tools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+        Why Choose EQUADATOR?
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="0">
+          <h3 class="text-xl font-bold mb-4">AI-Powered Insights</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            Our proprietary AI algorithms analyze millions of data points in real-time, providing you with actionable insights and predictions that give you a competitive edge in the market.
+          </p>
+        </div>
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-4">Comprehensive Coverage</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            From stocks and derivatives to mutual funds and bonds, we offer a complete suite of investment tools powered by advanced machine learning technology.
+          </p>
+        </div>
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-4">User-Friendly Interface</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            Experience a seamless, intuitive platform that makes complex investment strategies accessible to both beginners and experienced investors.
+          </p>
+        </div>
+        <div class="feature-card p-8" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold mb-4">Security & Reliability</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            Bank-grade security measures and 99.9% uptime ensure your investment activities are always protected and accessible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 opacity-50"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-6">Ready to Experience the Future of Investing?</h2>
+      <p class="text-xl text-slate-600 dark:text-slate-300 mb-8">
+        Join thousands of successful investors who trust EQUADATOR for their investment decisions.
+      </p>
+      <a href="signup.html" class="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-[#00eaff] to-[#7b2ff2] text-white font-semibold hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        Start Your Journey
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto text-center text-slate-600 dark:text-slate-400">
+      &copy; 2024 EQUADATOR. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    // Theme switching
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    function setTheme(theme) {
+      document.body.classList.remove('light', 'dark');
+      document.body.classList.add(theme);
+      localStorage.setItem('theme', theme);
+    }
+
+    // On load, set theme from localStorage or system
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        setTheme(saved);
+      } else {
+        setTheme('light');
+      }
+    })();
+  </script>
+</body>
+</html>
